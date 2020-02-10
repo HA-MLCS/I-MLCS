@@ -1,87 +1,21 @@
+# I-MLCS
+## Introduction
+We propose a novel *MLCS* mining tool ***I-MLCS*** (<u>**I**</u>ntegrated  <u>**M**</u>ultiple <u>**L**</u>ongest <u>**C**</u>ommon <u>**S**</u>ubsequence algorithm) for mining big sequence data. The algorithm includes a series of novel *MLCS* mining strategies, and can integrate both exact and approximate *MLCS* algorithms to effectively meet those challenges. Extensive experiments on both synthetic and real-world biological sequence datasets demonstrate *I-MLCS*’s outstanding performance in terms of both running time efficiency and result quality compared to the state-of-the-art existing exact and approximate *MLCS* algorithms. 
 
+In summary, the main contributions of this algorithm are: 
+ - It reveals and verifies some serious weaknesses of current popular dominant-based point *MLCS* algorithms through both theoretical analysis and experiments for the first time.
+ - It proposes a novel problem-solving graph model, called Non-redundant Common Subsequence Graph (*NCSG*), and introduces a series of novel *MLCS* mining techniques for *NCSG* to harness the big sequence data efficiently and effectively.
+ - Based on several shared functions, it designs an novel integrated MLCS mining tool *I-MLCS* that integrates both exact and approximate algorithms with the ability to customize the mining precision and visualizing the mined results.
 
-#IV_MLCS
-###Introduction
-**IV-MLCS**(**I**ntegrated and **V**isualized **M**ultiple **L**ongest **C**ommon **S**ubsequence algorithm) can deal with big
- sequences effectively and efficiently in terms of algorithms's running time and results'precision and can visualize the structrue of all
- the MLCSs. In summary, the main contributions of this algorithm are:
-* We propose a novel problem-solving model, namely Non-redundant Common Subsequence Graph, NCSG, and its continually dynamic optimizing strategy.
-* with extracting functional commonalities both exact and approximate MLCS algorithms and introducing series of well-designed strategies.
-* By adopting visualization technology, IV-MLCS can visualize mined all of MLCSs’ structure for further insight and mining by user.
+## Install & Run
 
-###Install & Run
-1. Install JDK-1.8;
-2. in the eclipse ,you can run with parameter [fileName][-Dmlcs.p][-Djava.util.Arrays.useLegacyMergeSort]
-
-
-    "fileName":program parameter,files should be put in "file" Folder to be read
-     [-Dmlcs.p]: VM parameter,the range of this value is between 0 and 1,the bigger the number, the higher the accuracy
-     [-Djava.util.Arrays.useLegacyMergeSort]:VM parameter,should be set true
-### Project structure
+ 1. Install JDK-1.8;
+ 2. Put the data files to be processed into the 'file' folder of this project;
+ 3. Run the following command in a shell command window.
 ```
-│  .classpath
-│  .project
-│  README.md
-│
-├─.settings
-│      org.eclipse.jdt.core.prefs
-│
-├─file                        //Put the files that need to be processed here.
-│      100_3_4_1.txt
-│
-├─lib
-└─src
-    ├─arlp                     //Approximate Real Linear Parallel MLCS algorithm
-    │  └─mlcs
-    │      │  Crawler.java      //the entrance of approximate real Linear parallel MLCS algorithm
-    │      │  Graph.java
-    │      │  Location.java
-    │      │  Mlcs.java
-    │      │  MyBestOrderSort.java
-    │      │  RadixSorting.java
-    │      │  RadixSortingbeta2.java
-    │      │  Sequence.java
-    │      │  SingleDeminsionSortedResult.java
-    │      │
-    │      └─util               //Toolkit for approximate real Linear parallel MLCS algorithm
-    │              DrawNode.java
-    │              GrowableQueue.java
-    │              Logger.java
-    │              LogWriter.java
-    │              Queues.java
-    │              Stopwatch.java
-    │              TestDrawTree.java
-    │              TreePanel.java
-    │
-    ├─erlp                     //Exact Real Linear Parallel MLCS algorithm
-    │  └─mlcs
-    │      │  Border.java
-    │      │  BoundedPaths.java
-    │      │  Graph.java
-    │      │  InNode.java
-    │      │  Location.java
-    │      │  Mlcs.java
-    │      │  Sequence.java
-    │      │  SubGraph.java
-    │      │
-    │      ├─stage2
-    │      │      ERLP_MLCS.java //the entrance of exact real linear parallel MLCS algorithm
-    │      │      IndegreeGraph.java
-    │      │
-    │      └─util                //Toolkit for exact real linear parallel MLCS algorithm
-    │              DrawNode.java
-    │              Logger.java
-    │              LogWriter.java
-    │              Queues.java
-    │              Seilize.java
-    │              StepGenerator.java
-    │              Stopwatch.java
-    │              TestDrawTree.java
-    │              TreePanel.java
-    │
-    └─mlcs
-        └─iv
-                Main.java         //Main class
-
-
+java -jar -Dmlcs.max-thread=2 -Djava.util.Arrays.useLegacyMergeSort=true -Dmlcs.p=1 I-MLCS.jar [fileName]
 ```
+ - [fileName]: program parameter, files should be put in 'file' Folder to be read;
+ - [-Dmlcs.max-thread]: VM parameter, the number of threads you need to start;
+ - [-Djava.util.Arrays.useLegacyMergeSort]: VM parameter, should be set true;
+ - [-Dmlcs.p]: VM parameter, the range of this value is between 0 and 1, the bigger the number, the higher the accuracy;
