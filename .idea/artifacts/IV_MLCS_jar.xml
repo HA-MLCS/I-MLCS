@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="IV_MLCS:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/IV_MLCS_jar</output-path>
-    <root id="archive" name="IV_MLCS.jar">
-      <element id="module-output" name="IV_MLCS" />
-    </root>
-  </artifact>
-</component>

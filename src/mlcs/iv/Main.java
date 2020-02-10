@@ -10,7 +10,7 @@ public class Main {
 		
 		if (args.length == 0) {
 			System.out.println(
-					"Usage:HorizontalCrawler /path/to/your/data/file -Dmlcs.max-thread=2 --Djava.util.Arrays.useLegacyMergeSort=true  -Dmlcs.p=1");
+					"Usage:HorizontalCrawler /path/to/your/data/file -Dmlcs.max-thread=2 -Djava.util.Arrays.useLegacyMergeSort=true -Dmlcs.p=1");
 			return;
 		}
 		if(System.getProperty("mlcs.p") == null){
