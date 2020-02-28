@@ -5,6 +5,7 @@
 /bin
 /lib
 /out
+/META-INF
 .classpath
 .project
 IV_MLCS.iml
