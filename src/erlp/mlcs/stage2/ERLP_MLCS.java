@@ -1,13 +1,7 @@
 package erlp.mlcs.stage2;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
@@ -23,6 +17,7 @@ import erlp.mlcs.util.Queues;
 import erlp.mlcs.util.StepGenerator;
 import erlp.mlcs.util.Stopwatch;
 import erlp.mlcs.util.TestDrawTree;
+import mlcs.iv.Main;
 
 
 public class ERLP_MLCS {
@@ -43,12 +38,11 @@ public class ERLP_MLCS {
         }
 
         int step = 0;
-//		String stepProperty = System.getProperty("mlcs.step");
-//		if (null != stepProperty)
-//			step = Integer.parseInt(stepProperty);
-
-
-//		prompts.append(" step=" + step);
+        String stepProperty = System.getProperty("mlcs.step");
+        if (null != stepProperty) {
+            step = Integer.parseInt(stepProperty);
+            prompts.append(" step=" + step);
+        }
 
         System.out.println("Starting search " + args + prompts);
         for (String arg : args) {
@@ -73,8 +67,8 @@ public class ERLP_MLCS {
         long start = System.nanoTime();
         IndegreeGraph graph = new IndegreeGraph(mlcs);
         Mlcs.Result result = ERLP_MLCS.bfs(mlcs, graph, step);
-        LogWriter.log("nodeCount" + result.nodeCount + "\t" + result.count + " mlcs(max length " + result.length
-                + ") found, using "
+        LogWriter.log("\nkeynode num: " + graph.keyLocs.size() + "\n" + result.count + " mlcs(max length " + result.length
+                + ") found\nusing "
                 + Stopwatch.format(System.nanoTime() - start));
 
         if (null != result.count) {
@@ -87,13 +81,25 @@ public class ERLP_MLCS {
                 TestDrawTree testDrawTree = new TestDrawTree();
                 long s = System.nanoTime();
                 testDrawTree.visualize(paths, true, 70 * paths.get(0).size(), mlcs);   //visualize the result
-
             }
-
         }
 
 
         LogWriter.close();
+//        if (result.count.intValue() < 50) {
+//            List<List<Location>> paths = graph.findKeyPaths();
+//            List<String> strPaths = new ArrayList<>();
+//            Iterator<List<Location>> iter = paths.iterator();
+//            while (iter.hasNext()) {
+//                List<Location> path = iter.next();
+//                StringBuffer stringBuffer = new StringBuffer();
+//                for (Location l : path) {
+//                    stringBuffer.append(mlcs.charAt(l));
+//                }
+//                strPaths.add(stringBuffer.toString());
+//            }
+//            Main.writeFile(fileName + "_reslut", strPaths);
+//        }
     }
 
     /**
